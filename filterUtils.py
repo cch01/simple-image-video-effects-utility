@@ -9,10 +9,10 @@ def createAlphaChannel(frame):
     frame = cv2.cvtColor(frame, cv2.COLOR_BGR2BGRA)
   return frame
 
-def resizeDisplayingWindow(frame):
+def resizeDisplayingWindow(frame, height=480):
     dimension = None
     frameHeight, frameWidth = frame.shape[:2]
-    outputHeight = 240
+    outputHeight = height
     aspectRatio = outputHeight / float(frameHeight)
     dimension = (int(frameWidth * aspectRatio), outputHeight)
     return cv2.resize(frame, dimension, interpolation=cv2.INTER_AREA)

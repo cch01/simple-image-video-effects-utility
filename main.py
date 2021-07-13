@@ -11,8 +11,8 @@ def renderVideo(path):
   while(vid.isOpened()):
     ret, frame = vid.read()
     if ret == True:
-      frame = Filters.portraitMode(resizeDisplayingWindow(frame))
-      cv2.imshow('video', resizeDisplayingWindow(frame))
+      cv2.imshow('video_ori', resizeDisplayingWindow(frame, 480))
+      cv2.imshow('video', resizeDisplayingWindow(frame, 480))
       if cv2.waitKey(fps) & 0xFF == ord('q'):
         break
     else:
@@ -23,15 +23,15 @@ def renderVideo(path):
 
 def renderPhoto(path):
   img = cv2.imread(path)
-  cv2.imshow('ori_img', resizeDisplayingWindow(img))
-  img = Filters.portraitMode(img)
-  cv2.imshow('img', resizeDisplayingWindow(img))
+  cv2.imshow('ori_img', resizeDisplayingWindow(img, 480))
+
+  cv2.imshow('img', resizeDisplayingWindow(img, 480))
   cv2.waitKey(0)
   cv2.destroyAllWindows()
+  cv2.imwrite('img.jpg', img)
 
 if __name__ == '__main__':
-  # renderPhoto('portraitTest.jpg')
-  # renderPhoto('photo.jpg')
+  renderPhoto('portraitTest.jpg')
   renderVideo('video.mp4')
   
 # TODO make CLI, LOGIC for saving modified outputs
