@@ -61,10 +61,10 @@ def openSrcFile():
 
 
 def askForFilters():
-  filters = input('Select filters to be applied:\n1. Inverted Filter\n2. Sepia Filter\n3. Cooler\n4. Warmer\n5. Paint Effect\n6. Noise Reduction\n7. Blur\n8. Sharpening\n9. negative\n\nAdd "," between filters if multiple filters are desired.\n')
+  filters = input('Select filters to be applied:\n1. Negative Filter\n2. Sepia Filter\n3. Cooler\n4. Warmer\n5. Paint Effect\n6. Noise Reduction\n7. Blur\n8. Sharpening\n\nAdd "," between filters if multiple filters are desired.\n')
   try:
     inputs = [int(f) for f in filters.split(",")]
-    isValidInputs = all(val < 10 and val >= 0 for val in inputs)
+    isValidInputs = all(val < 9 and val >= 0 for val in inputs)
     if not isValidInputs:
       print('---Please provide correct values---')
       return askForFilters()

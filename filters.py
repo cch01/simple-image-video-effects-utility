@@ -4,7 +4,7 @@ import cv2
 class Filters:
   def __init__(self):
     self.functions = {
-      1: self.invertedFilter,
+      1: self.negativeFilter,
       2: self.sepiaFilter,
       3: self.coolerFilter,
       4: self.warmerFilter,
@@ -12,10 +12,9 @@ class Filters:
       6: self.reduceNoise,
       7: self.blurFilter,
       8: self.sharpening,
-      9: self.negative
     }
 
-  def invertedFilter(self, frame):
+  def negativeFilter(self, frame):
     return cv2.bitwise_not(frame)
 
   def sepiaFilter(self, frame):
@@ -47,5 +46,3 @@ class Filters:
     filter = np.array([[-1,-1,-1],[-1,9,-1],[-1,-1,-1]])
     return cv2.filter2D(frame, -1, filter)
 
-  def negative(self, frame):
-    return 255-frame
