@@ -1,4 +1,4 @@
-from filterUtils import * 
+from utils import * 
 import cv2
 
 class Filters:
