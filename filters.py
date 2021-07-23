@@ -8,10 +8,9 @@ class Filters:
       2: self.sepiaFilter,
       3: self.coolerFilter,
       4: self.warmerFilter,
-      5: self.paint,
-      6: self.reduceNoise,
-      7: self.blurFilter,
-      8: self.sharpening,
+      5: self.reduceNoise,
+      6: self.blurFilter,
+      7: self.sharpening,
     }
 
   def negativeFilter(self, frame):
@@ -26,20 +25,10 @@ class Filters:
   def warmerFilter(self, frame):
     return applyOverlay(frame, 0, 48, 48, 0.25, 1)
    
-  def paint(self, frame):
-    frame = createAlphaChannel(frame)
-    grayFrame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-    _, mask = cv2.threshold(grayFrame, 120, 255, cv2.THRESH_BINARY)
-    mask = cv2.cvtColor(mask, cv2.COLOR_GRAY2BGRA)
-    blured = cv2.GaussianBlur(frame, (17, 17), 5)
-    blended = alphaBlend(frame, blured, mask)
-    frame = cv2.cvtColor(blended, cv2.COLOR_BGRA2BGR)
-    return frame
-
   def reduceNoise(self, frame):
     return cv2.medianBlur(frame, 5)
 
-  def blurFilter(self, frame, level=24):
+  def blurFilter(self, frame, level=16):
     return cv2.blur(frame, (level,level))
 
   def sharpening(self, frame):

@@ -30,10 +30,6 @@ def applyOverlay(frame, blue, green, red, overlayIntensity, frameIntensity):
   cv2.addWeighted(overlay, overlayIntensity, frame, frameIntensity, 0, frame)
   return frame
 
-def alphaBlend(frame1, frame2, mask):
-  alphaMask = mask/255
-  return cv2.convertScaleAbs(frame1*(1-alphaMask) + frame2*alphaMask)
-
 def openSrcFile():
   path = input('Image/Video location:\n')
   if path.endswith('.mp4'):
@@ -61,7 +57,7 @@ def openSrcFile():
 
 
 def askForFilters():
-  filters = input('Select filters to be applied:\n1. Negative Filter\n2. Sepia Filter\n3. Cooler\n4. Warmer\n5. Paint Effect\n6. Noise Reduction\n7. Blur\n8. Sharpening\n\nAdd "," between filters if multiple filters are desired.\n')
+  filters = input('Select filters to be applied:\n1. Negative Filter\n2. Sepia Filter\n3. Cooler\n4. Warmer\n5. Noise Reduction\n6. Blur\n7. Sharpening\n\nAdd "," between filters if multiple filters are desired.\n')
   try:
     inputs = [int(f) for f in filters.split(",")]
     isValidInputs = all(val < 9 and val >= 0 for val in inputs)
